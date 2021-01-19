@@ -1,0 +1,8 @@
+@import url('../assets/css/bootstrap.min.css');
+
+.card-title{
+    font-size:1.3em !important;
+}
+.card-text {
+    font-size:0.9em;
+}
