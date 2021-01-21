@@ -12,7 +12,7 @@
           >
             <option value="">All</option>
             <option value="JCB">JCB</option>
-            <option value="MSC">Master</option>
+            <option value="MasterCard">Master Card</option>
           </select>
         </div>
       </div>
@@ -73,17 +73,16 @@ export default {
         this.filteredProfiles = this.records.profiles
       }
     },
-    fetchProfilesJson() {
-      axios
-        .get("data/profile.json")
-        .then((res) => {
-          this.records = res.data.records;
-          this.filteredProfiles = this.records.profiles;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+    // fetchProfilesJson() {
+    //   axios
+    //     .get("data/profile.json")
+    //     .then((res) => {
+    //       this.records = res.data.records;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
 
     filterCardType() {
       if (this.cardType) {
@@ -99,26 +98,27 @@ export default {
         this.filteredProfiles = this.records.profiles;
       }
     },
-    //fetchProfiles(){
-    // axios.get('https://api.enye.tech/v1/challenge/records')
-    //  .then(res => {
-    //   this.records = res.data;
-    //   console.log(this.records);
-    //  })
-    //  .catch(err => {
-    //   console.log(err)
-    // } )
-    //}
+    fetchProfiles(){
+    axios.get('https://api.enye.tech/v1/challenge/records')
+     .then(res => {
+      this.records = res.data.records;
+      console.log(this.records);
+      this.filteredProfiles = this.records.profiles;
+      //   setTimeout(() => {
+        
+      // }, 1000)
+     })
+     .catch(err => {
+      console.log(err)
+    } )
+    }
   },
   computed: {
   },
   watch: {
   },
   mounted(){
-    this.fetchProfilesJson();
-    setTimeout(() => {
-      this.filteredProfiles = this.records.profiles;
-    }, 1000)
+    this.fetchProfiles();
   }
 
 };

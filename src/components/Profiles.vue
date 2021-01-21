@@ -4,7 +4,6 @@
      <table class="table table-bordered table-responsive">
     <thead class="bg-primary text-white">
       <tr>
-        <!-- <th>Number</th> -->
         <th>First Name</th>
         <th>Last Name</th>
         <th>Gender</th>
@@ -13,11 +12,11 @@
         <th>PhoneNumber</th>
         <th>Payment Method</th>
         <th>Credit Card Type</th>
+        <th>Domain Name</th>
       </tr>
     </thead>
     <tbody>
     <tr v-for="(profile) in displayedPosts" :key="profile.Email">
-      <!-- <td>{{ index }}</td> -->
       <td>{{ profile.FirstName }}</td>
       <td>{{ profile.LastName }}</td>
       <td>{{ profile.Gender }}</td>
@@ -26,6 +25,7 @@
       <td>{{ profile.PhoneNumber }}</td>
       <td>{{ profile.PaymentMethod }}</td>
       <td>{{ profile.CreditCardType }}</td>
+      <td>{{ profile.DomainName }}</td>
     </tr>
     </tbody>
   </table>
