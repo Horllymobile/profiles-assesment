@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-     <table class="table table-bordered">
+     <table class="table table-bordered table-responsive">
     <thead class="bg-primary text-white">
       <tr>
         <!-- <th>Number</th> -->
@@ -36,7 +36,7 @@
 					<button type="button" class="page-link" v-if="page != 1" @click="page--"> Previous </button>
 				</li>
 				<li class="page-item">
-					<button type="button" class="page-link" v-for="(pageNumber, index) in pages.slice(page-1, page+5)" :key="index" @click="page = pageNumber"> {{pageNumber}} </button>
+					<button type="button" class="page-link" :class="{'bg-primary': page === pageNumber}" v-for="(pageNumber, index) in pages.slice(page-1, page+5)" :key="index" @click="page = pageNumber"> {{pageNumber}} </button>
 				</li>
 				<li class="page-item">
 					<button type="button" @click="page++" v-if="page < pages.length" class="page-link"> Next </button>
@@ -60,10 +60,6 @@ export default {
       type: Array,
       required: true
     },
-    size: {
-      type: Number,
-      required: true,
-    }
   },
   mounted(){
     //console.log(this.listData[0]);
@@ -93,7 +89,6 @@ export default {
   computed: {
     
     displayedPosts () {
-      console.log(this.listData)
 			return this.paginate(this.listData);
 		}
     

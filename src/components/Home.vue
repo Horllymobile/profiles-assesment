@@ -18,7 +18,8 @@
       </div>
       <div class="col-lg-8">
         <div class="form-group" style="margin-top:1.9em !important;">
-          <input type="search" class="form-control" v-model="searchInput" 
+          <input type="search" class="form-control" v-model.trim="searchInput"
+            @keydown="searchData()"
           id="search" placeholder="Search names">
         </div>
       </div>
@@ -41,6 +42,7 @@
     </div>
     <!-- <div > -->
       <Profiles v-if="filteredProfiles" :listData="filteredProfiles" :size="filteredProfiles.length"/>
+
     <!-- </div> -->
   </div>
 </template>
@@ -62,11 +64,21 @@ export default {
     Profiles
   },
   methods: {
+    searchData() {
+      let searchingDatas = this.records.profiles
+      if(this.searchInput){
+        this.filteredProfiles = [ ...searchingDatas ]
+          .filter(item => item.FirstName.toLowerCase().includes(this.searchInput.toLowerCase()))
+      }else{
+        this.filteredProfiles = this.records.profiles
+      }
+    },
     fetchProfilesJson() {
       axios
         .get("data/profile.json")
         .then((res) => {
           this.records = res.data.records;
+          this.filteredProfiles = this.records.profiles;
         })
         .catch((err) => {
           console.log(err);
@@ -75,20 +87,14 @@ export default {
 
     filterCardType() {
       if (this.cardType) {
-        this.filteredProfiles = this.records.profiles.filter(
-          (item) => item.CreditCardType == this.cardType
-        );
-        console.log(this.filteredProfiles);
+        this.filteredProfiles = this.records.profiles.filter((item) => item.CreditCardType == this.cardType);
       } else {
         this.filteredProfiles = this.records.profiles;
-        console.log(this.filteredProfiles);
       }
     },
     filterPaymentMethod() {
       if (this.paymentMethod){
-        this.filteredProfiles = this.records.profiles.filter(
-          (item) => item.PaymentMethod == this.paymentMethod
-        )
+        this.filteredProfiles = this.records.profiles.filter((item) => item.PaymentMethod == this.paymentMethod)
       } else {
         this.filteredProfiles = this.records.profiles;
       }
@@ -104,17 +110,17 @@ export default {
     // } )
     //}
   },
-  computed: {},
+  computed: {
+  },
   watch: {
-    
   },
   mounted(){
     this.fetchProfilesJson();
-    
     setTimeout(() => {
       this.filteredProfiles = this.records.profiles;
     }, 1000)
-  },
+  }
+
 };
 </script>
 

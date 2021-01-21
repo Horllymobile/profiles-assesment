@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="row">
-      <v-app-bar class="col-lg-12 col-md-12">
+      <v-app-bar class="col-lg-12 col-md-12" style="width:100% !important;">
       <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
       <div class="contatiner">
         <v-toolbar-title>Payments Profiles</v-toolbar-title>
