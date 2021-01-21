@@ -33,13 +33,13 @@
     <div class="row">
 			<ul class="pagination">
 				<li class="page-item">
-					<button type="button" class="page-link" v-if="page != 1" @click="page--"> Previous </button>
+					<button type="button" class="page-link" v-if="page != 1" @click="page--"> &lt;</button>
 				</li>
 				<li class="page-item">
 					<button type="button" class="page-link" :class="{'bg-primary': page === pageNumber}" v-for="(pageNumber, index) in pages.slice(page-1, page+5)" :key="index" @click="page = pageNumber"> {{pageNumber}} </button>
 				</li>
 				<li class="page-item">
-					<button type="button" @click="page++" v-if="page < pages.length" class="page-link"> Next </button>
+					<button type="button" @click="page++" v-if="page < pages.length" class="page-link">&gt;</button>
 				</li>
 			</ul>
     </div>
